@@ -31,7 +31,7 @@
       $("#save").on("click", () => {
         let titleText = $("#input").val();
         let getText = $("#text_area").val();
-        let getText2 = $("#textarea2").val();
+        let getText2 = $("#text_area2").val();
         const writeData = { title: titleText, text: getText, text2: getText2 };
         let jsonData = JSON.stringify(writeData);
         localStorage.setItem(localStorageID, jsonData);
@@ -39,7 +39,7 @@
       $("#clear").on("click", () => {
         $("#input").val("");
         $("#text_area").val("");
-        $("#text_area").val("");
+        $("#text_area2").val("");
         const writeData = { title: "", text: "", text2: "" };
         let jsonData = JSON.stringify(writeData);
         localStorage.setItem(localStorageID, jsonData);
