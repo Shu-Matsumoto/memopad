@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>myMemoPad中級</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>MemoPad中級編</h1>
+    </header>
+
+    <main>
+      <input type="text" id="input" />
+      <textarea id="text_area"></textarea>
+      <ul>
+        <li id="save">Save</li>
+        <li id="clear">Clear</li>
+      </ul>
+      <textarea id="text_area2"></textarea>
+    </main>
+    <footer>
+      <small>G's</small>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      const localStorageID = "memo";
+      $("#save").on("click", () => {
+        let titleText = $("#input").val();
+        let getText = $("#text_area").val();
+        let getText2 = $("#textarea2").val();
+        const writeData = { title: titleText, text: getText, text2: getText2 };
+        let jsonData = JSON.stringify(writeData);
+        localStorage.setItem(localStorageID, jsonData);
+      });
+      $("#clear").on("click", () => {
+        $("#input").val("");
+        $("#text_area").val("");
+        $("#text_area").val("");
+        const writeData = { title: "", text: "", text2: "" };
+        let jsonData = JSON.stringify(writeData);
+        localStorage.setItem(localStorageID, jsonData);
+      });
+
+      if (localStorage.getItem(localStorageID)) {
+        const jsonData = localStorage.getItem(localStorageID);
+        const data = JSON.parse(jsonData);
+        $("#input").val(data.title);
+        $("#text_area").val(data.text);
+        $("#text_area2").val(data.text2);
+        console.log(data);
+      }
+    </script>
+  </body>
+</html>
