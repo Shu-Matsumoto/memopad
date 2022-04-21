@@ -4,55 +4,138 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>myMemoPad中級</title>
+    <title>時計</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <header>
-      <h1>MemoPad中級編</h1>
-    </header>
-
+    <h2>Alarm window</h2>
+    <div id="timerText">
+      <p>現在時刻</p>
+      <p class="currentTime" id="currentTime">0:00:00</p>
+    </div>
+    <div class="container">
+        <p>アラーム設定時刻</p>
+    </div>
+    <div class="add_alarm_section">
+      <div class="alarm" id="alarm1">
+        <form name="alarm_form" class="set_alarm_time_section">
+          <p>アラーム: 
+            <select name ="option_hours" id = "option_select_H_1"></select>
+            <select name ="option_minutes" id = "option_select_M_1"></select>
+          </p>
+        </form>
+        <div class="alarm_onoff">
+            <label class="switch__label">
+                <input type="checkbox" class="switch__input" id="alarm_onoff_check1"/>
+                <span class="switch__content"></span>
+                <span class="switch__circle"></span>
+            </label>
+        </div>
+      </div>
+      <div class="alarm" id="alarm2">
+        <form name="alarm_form" class="set_alarm_time_section">
+          <p>アラーム: 
+            <select name ="option_hours" id = "option_select_H_2"></select>
+            <select name ="option_minutes" id = "option_select_M_2"></select>
+          </p>
+        </form>
+        <div class="alarm_onoff">
+            <label class="switch__label">
+                <input type="checkbox" class="switch__input" id="alarm_onoff_check2"/>
+                <span class="switch__content"></span>
+                <span class="switch__circle"></span>
+            </label>
+        </div>
+      </div>
+      <div class="alarm" id="alarm3">
+        <form name="alarm_form" class="set_alarm_time_section">
+          <p>アラーム: 
+            <select name ="option_hours" id = "option_select_H_3"></select>
+            <select name ="option_minutes" id = "option_select_M_3"></select>
+          </p>
+        </form>
+        <div class="alarm_onoff">
+            <label class="switch__label">
+                <input type="checkbox" class="switch__input" id="alarm_onoff_check3"/>
+                <span class="switch__content"></span>
+                <span class="switch__circle"></span>
+            </label>
+        </div>
+      </div>
+    </div>
+    <div class="botton_fixed_menu_section">
+      <nav class="botton_fixed_menu">
+        <ul class="botton_fixed_menu_items">
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_alarm">
+              <p>Alarm</p>
+            </div>
+          </li>
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_watch">
+              <p>Watch</p>
+            </div>
+          </li>
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_stopwatch">
+              <p>Stopwatch</p>
+            </div>
+          </li>
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_timer">
+              <p>Timer</p>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
     <main>
-      <input type="text" id="input" />
-      <textarea id="text_area"></textarea>
-      <ul>
-        <li id="save">Save</li>
-        <li id="clear">Clear</li>
-      </ul>
-      <textarea id="text_area2"></textarea>
-    </main>
-    <footer>
-      <small>G's</small>
-    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="alarm.js"></script>
+    <script src="watch.js"></script>
     <script>
-      const localStorageID = "memo";
-      $("#save").on("click", () => {
-        let titleText = $("#input").val();
-        let getText = $("#text_area").val();
-        let getText2 = $("#text_area2").val();
-        const writeData = { title: titleText, text: getText, text2: getText2 };
-        let jsonData = JSON.stringify(writeData);
-        localStorage.setItem(localStorageID, jsonData);
+      // アラーム時刻の選択肢を挿入
+      // 時刻選択用オプション記述
+      let option_select_html_txt = "";
+      for (let h = 0; h < 24; h++){
+        option_select_html_txt += "<option value=\"" + h + "\">" + h + "</option>";
+      }
+      $("#option_select_H_1").html(option_select_html_txt);
+      $("#option_select_H_2").html(option_select_html_txt);
+      $("#option_select_H_3").html(option_select_html_txt);
+
+      // 分選択用オプション記述
+      option_select_html_txt = "";
+      for (let m = 0; m < 60; m++){
+        option_select_html_txt += "<option value=\"" + m + "\">" + m + "</option>";
+      }
+      $("#option_select_M_1").html(option_select_html_txt);
+      $("#option_select_M_2").html(option_select_html_txt);
+      $("#option_select_M_3").html(option_select_html_txt);
+
+      // ページ下部の位置固定ボタンんのクリックイベントハンドラ
+      $("#botton_fixed_menu_item_alarm").on("click", ()=>{
+        window.location.href = "index.html";
       });
-      $("#clear").on("click", () => {
-        $("#input").val("");
-        $("#text_area").val("");
-        $("#text_area2").val("");
-        const writeData = { title: "", text: "", text2: "" };
-        let jsonData = JSON.stringify(writeData);
-        localStorage.setItem(localStorageID, jsonData);
+      $("#botton_fixed_menu_item_watch").on("click", ()=>{
+        window.location.href = "html/watch.html";
+      });
+      $("#botton_fixed_menu_item_stopwatch").on("click", ()=>{
+        window.location.href = "html/stopwatch.html";
+      });
+      $("#botton_fixed_menu_item_timer").on("click", ()=>{
+        window.location.href = "html/timer.html";
       });
 
-      if (localStorage.getItem(localStorageID)) {
-        const jsonData = localStorage.getItem(localStorageID);
-        const data = JSON.parse(jsonData);
-        $("#input").val(data.title);
-        $("#text_area").val(data.text);
-        $("#text_area2").val(data.text2);
-        console.log(data);
+      // アラーム設定初期化
+      initAlarmSetting();
+
+      // リアルタイム時刻更新
+      function refreshClock(){
+        let text = getCurrentTimeText();
+        $("#currentTime").text(text);
       }
+      setInterval(refreshClock,1000);
     </script>
   </body>
 </html>

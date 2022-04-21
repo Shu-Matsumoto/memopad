@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>時計</title>
+    <link rel="stylesheet" href="../css/timer.css" />
+  </head>
+  <body>
+    <h2>Timer window</h2>
+    <div class="Timer_Section">
+    </div>
+    <div class="container">
+        <p>タイマー設定時間</p>
+    </div>
+    <div class="add_timer_section">
+      <div class="timer" id="timer">
+        <form name="alarm_form" class="set_timer_time_section">
+          <p>
+            <select name ="option_hours" id = "option_select_H"></select>
+            時間 
+            <select name ="option_minutes" id = "option_select_M"></select>
+            分
+            <select name ="option_seconds" id = "option_select_S"></select>
+            秒
+          </p>
+        </form>
+        <button class="startButton" id="startButton">開始</button>
+        <div id="timerText">
+          <p>残時間</p>
+          <p class="countdownTime" id="countdownTime">0:00:00</p>
+          <p class="timerComplete" id="timerComplete"></p>
+    </div>
+      </div>
+    <div class="botton_fixed_menu_section">
+      <nav class="botton_fixed_menu">
+        <ul class="botton_fixed_menu_items">
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_alarm">
+              <p>Alarm</p>
+            </div>
+          </li>
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_watch">
+              <p>Watch</p>
+            </div>
+          </li>
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_stopwatch">
+              <p>Stopwatch</p>
+            </div>
+          </li>
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_timer">
+              <p>Timer</p>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../timer.js"></script>
+    <script>
+      // タイマーのドロップダウンのリストを補充
+      let option_select_html_txt = "";
+      for (let h = 0; h < 24; h++){
+        option_select_html_txt += "<option value=\"" + h + "\">" + h + "</option>";
+      }
+      $("#option_select_H").html(option_select_html_txt);
+
+      // 分選択用オプション記述
+      option_select_html_txt = "";
+      for (let m = 0; m < 60; m++){
+        option_select_html_txt += "<option value=\"" + m + "\">" + m + "</option>";
+      }
+      $("#option_select_M").html(option_select_html_txt);
+
+      // 秒選択用オプション記述
+      option_select_html_txt = "";
+      for (let s = 0; s < 60; s++){
+        option_select_html_txt += "<option value=\"" + s + "\">" + s + "</option>";
+      }
+      $("#option_select_S").html(option_select_html_txt);
+
+      $("#botton_fixed_menu_item_alarm").on("click", ()=>{
+        window.location.href = "../index.html";
+      });
+      $("#botton_fixed_menu_item_watch").on("click", ()=>{
+        window.location.href = "watch.html";
+      });
+      $("#botton_fixed_menu_item_stopwatch").on("click", ()=>{
+        window.location.href = "stopwatch.html";
+      });
+      $("#botton_fixed_menu_item_timer").on("click", ()=>{
+        window.location.href = "timer.html";
+      });
+    </script>
+  </body>
+</html>

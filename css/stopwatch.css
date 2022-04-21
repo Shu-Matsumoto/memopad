@@ -1,0 +1,90 @@
+body {
+  width: 375px;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  text-align: center;
+}
+
+/*
+Stopwatchコントロール
+*/
+.stopwatch_counter_display{
+  font-size: 2.0rem;
+}
+
+.stopwatch_control_buttons {
+  width: 100%;
+  padding: 0%;
+  margin: 0%;
+  display: flex;
+  justify-content:center;
+  list-style: none;
+  text-align: center;
+}
+
+.stopwatch_control_button{
+  width: 20%;
+  padding: 0%;
+  margin: 10px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.stopwatch_control_button:hover{
+  background: gray;
+  color: black;
+}
+
+/*
+    Global Control: Botton fixed menu
+*/
+.botton_fixed_menu {
+  position: fixed;
+  display: block;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  left: 0px;
+  bottom: 15px;
+}
+
+.botton_fixed_menu_items {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0%;
+  margin: 0%;
+}
+
+/*４つの各ボタンの指定*/
+.botton_fixed_menu_item {
+  width: 25%;
+  height: 100%;
+  background: black;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: 0%;
+  margin: 0%;
+}
+
+.botton_fixed_menu_item p {
+  padding: 0%;
+  margin: 0%;
+  color: white;
+  font-size: 1.0rem;
+  text-align: center;
+}
+
+.botton_fixed_menu_item:hover {
+  background: gray;
+  color: black;
+}

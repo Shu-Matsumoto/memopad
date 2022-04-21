@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>時計</title>
+    <link rel="stylesheet" href="../css/stopwatch.css" />
+  </head>
+  <body>
+    <h2>Stopwatch window</h2>
+    <div class="stopwatch_area">
+      <div class="stopwatch_counter_display">
+        <p id="stopwatch_counter">00:00:000</p>
+      </div>
+      <ul class="stopwatch_control_buttons">
+        <li class="stopwatch_control_button" id="startButton">
+          <p>Start</p>
+        </li>
+        <li class="stopwatch_control_button" id="stopButton">
+          <p>Stop</p>
+        </li>
+        <li class="stopwatch_control_button" id="resetButton">
+          <p>Reset</p>
+        </li>
+      </ul>
+    </div>
+    <div class="botton_fixed_menu_section">
+      <nav class="botton_fixed_menu">
+        <ul class="botton_fixed_menu_items">
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_alarm">
+              <p>Alarm</p>
+            </div>
+          </li>
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_watch">
+              <p>Watch</p>
+            </div>
+          </li>
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_stopwatch">
+              <p>Stopwatch</p>
+            </div>
+          </li>
+          <li class="botton_fixed_menu_item">
+            <div id="botton_fixed_menu_item_timer">
+              <p>Timer</p>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../stopwatch.js"></script>
+    <script>
+      // ストップボタンを無効化
+      $("#stopButton").prop('disabled',true);
+
+      /* スタートボタンクリックイベントハンドラ */
+      $("#startButton").on("click", ()=>{
+        // ストップボタンを無効化
+        $("#stopButton").prop('disabled',true);
+        startStopwatch("stopwatch_counter");
+      });
+      /* ストップボタンクリックイベントハンドラ */
+      $("#stopButton").on("click", ()=>{
+        stopStopwatch();
+      });
+      /* リセットボタンクリックイベントハンドラ */
+      $("#resetButton").on("click", ()=>{
+        // 停止ボタンの無効化
+        resetStopwatch("stopwatch_counter");
+      });
+      $("#botton_fixed_menu_item_alarm").on("click", ()=>{
+        window.location.href = "../index.html";
+      });
+      $("#botton_fixed_menu_item_watch").on("click", ()=>{
+        window.location.href = "watch.html";
+      });
+      $("#botton_fixed_menu_item_stopwatch").on("click", ()=>{
+        window.location.href = "stopwatch.html";
+      });
+      $("#botton_fixed_menu_item_timer").on("click", ()=>{
+        window.location.href = "timer.html";
+      });
+    </script>
+  </body>
+</html>
