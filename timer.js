@@ -6,14 +6,15 @@ $("#startButton").on("click", () => {
     // 停止ボタン
     onDoing = false;
     stopRequest = true;
+    stopTimer();
     clearInterval(pollingStopRequest);
-    isExecutuing = false;
     $("#startButton").text("開始");
   }
   else
   {
     // 開始ボタン
     onDoing = true;
+    stopRequest = false;
     isExecutuing = true;
     $("#startButton").text("停止");
     stratTimer();
@@ -24,9 +25,9 @@ let countdownFunction;
 let pollingFunction;
 let isExecutuing = false;
 let stopRequest = false;
-function stratTimer() {
 
-  stopRequest = false;
+// タイマー開始
+function stratTimer() {
 
   const h = $("#option_select_H").val();
   const m = $("#option_select_M").val();
@@ -70,17 +71,40 @@ function stratTimer() {
 function pollingStopRequest()
 {
   // カウントダウン関数定期実行を停止
-  if (isExecutuing && stopRequest)
+  if (stopRequest && isExecutuing)
   {
     stopTimer();
+    showPopupForTimerComplete();
   }
 }
 
 function stopTimer() {
   clearInterval(countdownFunction);
+  isExecutuing = false;
 }
 
-function init()
-{
-  stopRequest = true;
+function init() {
+  $("#startButton").text("開始");
+}
+
+// タイマー完了時のポップアップ表示
+function showPopupForTimerComplete() {
+
+  var popup = document.getElementById("js-popup");
+  if (!popup) { return; }
+  popup.classList.add("is-show");
+
+  var blackBg = document.getElementById("js-black-bg");
+  var closeBtn = document.getElementById("js-close-btn");
+
+  closePopUp(blackBg);
+  closePopUp(closeBtn);
+
+  function closePopUp(elem) {
+    if (!elem) { return; }
+    elem.addEventListener("click", function() {
+      popup.classList.remove("is-show");
+      init();
+    })
+  }
 }

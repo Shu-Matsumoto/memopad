@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>時計</title>
+    <!--all.css:ポップアップを使うために使用するcss-->
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/timer.css" />
   </head>
   <body>
@@ -59,7 +61,13 @@
         </ul>
       </nav>
     </div>
-    <main>
+    <div class="popup" id="js-popup">
+      <div class="popup-inner">
+        <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+        <a href="#"><img src="../img/timeup.jpg" alt="ポップアップ画像"></a>
+        </div>
+      <div class="black-background" id="js-black-bg"></div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../timer.js"></script>
     <script>
